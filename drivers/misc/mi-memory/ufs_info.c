@@ -297,7 +297,7 @@ struct ufs_info_t *init_ufs_info(void)
 		g_ufs_info->ufs_size = 8;
 	} else {
 		g_ufs_info->ufs_size = 0;
-		pr_info("mv unkonwn ufs size %d\n", raw_device_capacity);
+		pr_info("mv unkonwn ufs size %llu\n", raw_device_capacity);
 	}
 	return g_ufs_info;
 err:
@@ -381,7 +381,7 @@ static ssize_t dump_health_desc_show(struct device *dev, struct device_attribute
 				break;
 		}
 
-		count += snprintf((buf + count), PAGE_SIZE, "Device Descriptor[Byte offset 0x%x]: %s = 0x%x\n",
+		count += snprintf((buf + count), PAGE_SIZE, "Device Descriptor[Byte offset 0x%llx]: %s = 0x%llx\n",
 			tmp->offset, tmp->name, value);
 	}
 
@@ -507,7 +507,7 @@ static ssize_t dump_device_desc_show(struct device *dev, struct device_attribute
 				break;
 		}
 
-		count += snprintf((buf + count), PAGE_SIZE, "Device Descriptor[Byte offset 0x%x]: %s = 0x%x\n",
+		count += snprintf((buf + count), PAGE_SIZE, "Device Descriptor[Byte offset 0x%llx]: %s = 0x%llx\n",
 					tmp->offset, tmp->name, value);
 	}
 
@@ -529,59 +529,59 @@ static ssize_t show_hba_show(struct device *dev, struct device_attribute *attr, 
 	}
 
 
-	count += snprintf((buf + count), PAGE_SIZE, "hba->outstanding_tasks = 0x%x\n", (u32)g_ufs_info->hba->outstanding_tasks);
-	count += snprintf((buf + count), PAGE_SIZE, "hba->outstanding_reqs = 0x%x\n", (u32)g_ufs_info->hba->outstanding_reqs);
+	count += snprintf((buf + count), PAGE_SIZE, "hba->outstanding_tasks = 0x%llx\n", (u32)g_ufs_info->hba->outstanding_tasks);
+	count += snprintf((buf + count), PAGE_SIZE, "hba->outstanding_reqs = 0x%llx\n", (u32)g_ufs_info->hba->outstanding_reqs);
 
-	count += snprintf((buf + count), PAGE_SIZE, "hba->capabilities = 0x%x\n", g_ufs_info->hba->capabilities);
+	count += snprintf((buf + count), PAGE_SIZE, "hba->capabilities = 0x%llx\n", g_ufs_info->hba->capabilities);
 	count += snprintf((buf + count), PAGE_SIZE, "hba->nutrs = %d\n", g_ufs_info->hba->nutrs);
 	count += snprintf((buf + count), PAGE_SIZE, "hba->nutmrs = %d\n", g_ufs_info->hba->nutmrs);
-	count += snprintf((buf + count), PAGE_SIZE, "hba->ufs_version = 0x%x\n", g_ufs_info->hba->ufs_version);
-	count += snprintf((buf + count), PAGE_SIZE, "hba->irq = 0x%x\n", g_ufs_info->hba->irq);
+	count += snprintf((buf + count), PAGE_SIZE, "hba->ufs_version = 0x%llx\n", g_ufs_info->hba->ufs_version);
+	count += snprintf((buf + count), PAGE_SIZE, "hba->irq = 0x%llx\n", g_ufs_info->hba->irq);
 	count += snprintf((buf + count), PAGE_SIZE, "hba->auto_bkops_enabled = %d\n", g_ufs_info->hba->auto_bkops_enabled);
 
-	count += snprintf((buf + count), PAGE_SIZE, "hba->ufshcd_state = 0x%x\n", g_ufs_info->hba->ufshcd_state);
-	count += snprintf((buf + count), PAGE_SIZE, "hba->clk_gating.state = 0x%x\n", g_ufs_info->hba->clk_gating.state);
-	count += snprintf((buf + count), PAGE_SIZE, "hba->eh_flags = 0x%x\n", g_ufs_info->hba->eh_flags);
-	count += snprintf((buf + count), PAGE_SIZE, "hba->intr_mask = 0x%x\n", g_ufs_info->hba->intr_mask);
-	count += snprintf((buf + count), PAGE_SIZE, "hba->ee_ctrl_mask = 0x%x\n", g_ufs_info->hba->ee_ctrl_mask);
+	count += snprintf((buf + count), PAGE_SIZE, "hba->ufshcd_state = 0x%llx\n", g_ufs_info->hba->ufshcd_state);
+	count += snprintf((buf + count), PAGE_SIZE, "hba->clk_gating.state = 0x%llx\n", g_ufs_info->hba->clk_gating.state);
+	count += snprintf((buf + count), PAGE_SIZE, "hba->eh_flags = 0x%llx\n", g_ufs_info->hba->eh_flags);
+	count += snprintf((buf + count), PAGE_SIZE, "hba->intr_mask = 0x%llx\n", g_ufs_info->hba->intr_mask);
+	count += snprintf((buf + count), PAGE_SIZE, "hba->ee_ctrl_mask = 0x%llx\n", g_ufs_info->hba->ee_ctrl_mask);
 
 	/* HBA Errors */
-	count += snprintf((buf + count), PAGE_SIZE, "hba->errors = 0x%x\n", g_ufs_info->hba->errors);
-	count += snprintf((buf + count), PAGE_SIZE, "hba->uic_error = 0x%x\n", g_ufs_info->hba->uic_error);
-	count += snprintf((buf + count), PAGE_SIZE, "hba->saved_err = 0x%x\n", g_ufs_info->hba->saved_err);
-	count += snprintf((buf + count), PAGE_SIZE, "hba->saved_uic_err = 0x%x\n", g_ufs_info->hba->saved_uic_err);
+	count += snprintf((buf + count), PAGE_SIZE, "hba->errors = 0x%llx\n", g_ufs_info->hba->errors);
+	count += snprintf((buf + count), PAGE_SIZE, "hba->uic_error = 0x%llx\n", g_ufs_info->hba->uic_error);
+	count += snprintf((buf + count), PAGE_SIZE, "hba->saved_err = 0x%llx\n", g_ufs_info->hba->saved_err);
+	count += snprintf((buf + count), PAGE_SIZE, "hba->saved_uic_err = 0x%llx\n", g_ufs_info->hba->saved_uic_err);
 	count += snprintf((buf + count), PAGE_SIZE, "hibern8_exit_cnt = %d\n", g_ufs_info->hba->ufs_stats.hibern8_exit_cnt);
 
 	/* uic specific errors */
-	count += snprintf((buf + count), PAGE_SIZE, "ufs_event_pa_error_cnt = 0x%x\n",
+	count += snprintf((buf + count), PAGE_SIZE, "ufs_event_pa_error_cnt = 0x%llx\n",
 			g_ufs_info->hba->ufs_stats.event[UFS_EVT_PA_ERR].cnt);
-	count += snprintf((buf + count), PAGE_SIZE, "ufs_event_dl_error_cnt = 0x%x\n",
+	count += snprintf((buf + count), PAGE_SIZE, "ufs_event_dl_error_cnt = 0x%llx\n",
 			g_ufs_info->hba->ufs_stats.event[UFS_EVT_DL_ERR].cnt);
-	count += snprintf((buf + count), PAGE_SIZE, "ufs_event_nl_error_cnt = 0x%x\n",
+	count += snprintf((buf + count), PAGE_SIZE, "ufs_event_nl_error_cnt = 0x%llx\n",
 			g_ufs_info->hba->ufs_stats.event[UFS_EVT_NL_ERR].cnt);
-	count += snprintf((buf + count), PAGE_SIZE, "ufs_event_tl_error_cnt = 0x%x\n",
+	count += snprintf((buf + count), PAGE_SIZE, "ufs_event_tl_error_cnt = 0x%llx\n",
 			g_ufs_info->hba->ufs_stats.event[UFS_EVT_TL_ERR].cnt);
-	count += snprintf((buf + count), PAGE_SIZE, "ufs_event_dme_error_cnt = 0x%x\n",
+	count += snprintf((buf + count), PAGE_SIZE, "ufs_event_dme_error_cnt = 0x%llx\n",
 			g_ufs_info->hba->ufs_stats.event[UFS_EVT_DME_ERR].cnt);
 
 	/* fatal errors */
-	count += snprintf((buf + count), PAGE_SIZE, "ufs_event_auto_hibern8_cnt = 0x%x\n",
+	count += snprintf((buf + count), PAGE_SIZE, "ufs_event_auto_hibern8_cnt = 0x%llx\n",
 			g_ufs_info->hba->ufs_stats.event[UFS_EVT_AUTO_HIBERN8_ERR].cnt);
-	count += snprintf((buf + count), PAGE_SIZE, "ufs_event_fatal_error_cnt= 0x%x\n",
+	count += snprintf((buf + count), PAGE_SIZE, "ufs_event_fatal_error_cnt= 0x%llx\n",
 			g_ufs_info->hba->ufs_stats.event[UFS_EVT_FATAL_ERR].cnt);
-	count += snprintf((buf + count), PAGE_SIZE, "ufs_event_link_startup_fail_cnt = 0x%x\n",
+	count += snprintf((buf + count), PAGE_SIZE, "ufs_event_link_startup_fail_cnt = 0x%llx\n",
 			g_ufs_info->hba->ufs_stats.event[UFS_EVT_LINK_STARTUP_FAIL].cnt);
-	count += snprintf((buf + count), PAGE_SIZE, "ufs_event_resume_error_cnt = 0x%x\n",
+	count += snprintf((buf + count), PAGE_SIZE, "ufs_event_resume_error_cnt = 0x%llx\n",
 			g_ufs_info->hba->ufs_stats.event[UFS_EVT_RESUME_ERR].cnt);
-	count += snprintf((buf + count), PAGE_SIZE, "ufs_event_suspend_error_cnt = 0x%x\n",
+	count += snprintf((buf + count), PAGE_SIZE, "ufs_event_suspend_error_cnt = 0x%llx\n",
 			g_ufs_info->hba->ufs_stats.event[UFS_EVT_SUSPEND_ERR].cnt);
 
 	/* abnormal events */
-	count += snprintf((buf + count), PAGE_SIZE, "ufs_event_device_reset_cnt = 0x%x\n",
+	count += snprintf((buf + count), PAGE_SIZE, "ufs_event_device_reset_cnt = 0x%llx\n",
 			g_ufs_info->hba->ufs_stats.event[UFS_EVT_DEV_RESET].cnt);
-	count += snprintf((buf + count), PAGE_SIZE, "ufs_event_host_reset_cnt = 0x%x\n",
+	count += snprintf((buf + count), PAGE_SIZE, "ufs_event_host_reset_cnt = 0x%llx\n",
 			g_ufs_info->hba->ufs_stats.event[UFS_EVT_HOST_RESET].cnt);
-	count += snprintf((buf + count), PAGE_SIZE, "ufs_event_abort_cnt = 0x%x\n",
+	count += snprintf((buf + count), PAGE_SIZE, "ufs_event_abort_cnt = 0x%llx\n",
 			g_ufs_info->hba->ufs_stats.event[UFS_EVT_ABORT].cnt);
 
 	/*host = ufshcd_get_variant(g_ufs_info->hba);
@@ -661,7 +661,7 @@ static int scsi_hr_inquiry(struct scsi_device *sdev, char *hr_inq, int len)
 	result = scsi_exec_req(sdev, cmd, DMA_FROM_DEVICE, hr_inq,
 				  len, NULL, 30 * HZ, 3, NULL);
 	if (result) {
-		pr_err("ufs: get hr_inquiry result error 0x%x\n", result);
+		pr_err("ufs: get hr_inquiry result error 0x%llx\n", result);
 		return -EIO;
 	}
 
@@ -701,7 +701,7 @@ static int scsi_sdr(struct scsi_device *sdev, char *sdr, int len)
 				  len, NULL, 30 * HZ, 3, NULL);
 
 	if (result) {
-		pr_err("ufs: get sdr result error 0x%x\n", result);
+		pr_err("ufs: get sdr result error 0x%llx\n", result);
 		return -EIO;
 	}
 
@@ -730,13 +730,13 @@ static int scsi_mhr(struct scsi_device *sdev, char *hr, int len)
 	result = scsi_exec_req(sdev, write_buffer, DMA_TO_DEVICE, VU,
 				  0x2c, NULL, 30 * HZ, 3, NULL);
 	if (result) {
-		pr_err("ufs: hr write buffer  error 0x%x\n", result);
+		pr_err("ufs: hr write buffer  error 0x%llx\n", result);
 		return -EIO;
 	}
 	result = scsi_exec_req(sdev, read_buffer, DMA_FROM_DEVICE, hr,
 				  len, NULL, 30 * HZ, 3, NULL);
 	if (result) {
-		pr_err("ufs: hr read buffer  error 0x%x\n", result);
+		pr_err("ufs: hr read buffer  error 0x%llx\n", result);
 		return -EIO;
 	}
 
@@ -765,7 +765,7 @@ static int scsi_osv(struct scsi_device *sdev, char *osv, int len)
 	result = scsi_exec_req(sdev, cmd, DMA_FROM_DEVICE, osv,
 				  len, NULL, 30 * HZ, 3, NULL);
 	if (result) {
-		pr_err("ufs: get osv result error 0x%x\n", result);
+		pr_err("ufs: get osv result error 0x%llx\n", result);
 		return -EIO;
 	}
 
@@ -796,7 +796,7 @@ static int scsi_sk_hr(struct scsi_device *sdev, char *buff, int len)
 	result = scsi_exec_req(sdev, cmd, DMA_FROM_DEVICE, buff,
 				  len, NULL, 30 * HZ, 3, NULL);
 	if (result) {
-		pr_err("ufs: get skhynix result error 0x%x\n", result);
+		pr_err("ufs: get skhynix result error 0x%llx\n", result);
 		return -EIO;
 	}
 
@@ -825,8 +825,8 @@ int scsi_ymtc_hr(struct scsi_device *sdev, char *hr, int len)
 	result = scsi_execute_req(sdev, write_buffer_1, DMA_TO_DEVICE, NULL,
 				  0, &sshdr, 30 * HZ, 3, NULL);
 	if (result) {
-		pr_err("ufs: hr write buffer 1  error 0x%x\n", result);
-		pr_err("sense hr write key:0x%x; asc:0x%x; ascq:0x%x\n", (int)sshdr.sense_key, (int)sshdr.asc, (int)sshdr.ascq);
+		pr_err("ufs: hr write buffer 1  error 0x%llx\n", result);
+		pr_err("sense hr write key:0x%llx; asc:0x%llx; ascq:0x%llx\n", (int)sshdr.sense_key, (int)sshdr.asc, (int)sshdr.ascq);
 		return -EIO;
 	}
 	//msleep(50);
@@ -834,8 +834,8 @@ int scsi_ymtc_hr(struct scsi_device *sdev, char *hr, int len)
 	result = scsi_execute_req(sdev, write_buffer_2, DMA_TO_DEVICE, buff,
 				  len_buff, &sshdr, 30 * HZ, 3, NULL);
 	if (result) {
-		pr_err("ufs: hr write buffer 2  error 0x%x\n", result);
-		pr_err("sense hr write key:0x%x; asc:0x%x; ascq:0x%x\n", (int)sshdr.sense_key, (int)sshdr.asc, (int)sshdr.ascq);
+		pr_err("ufs: hr write buffer 2  error 0x%llx\n", result);
+		pr_err("sense hr write key:0x%llx; asc:0x%llx; ascq:0x%llx\n", (int)sshdr.sense_key, (int)sshdr.asc, (int)sshdr.ascq);
 		return -EIO;
 	}
 	//msleep(50);
@@ -843,8 +843,8 @@ int scsi_ymtc_hr(struct scsi_device *sdev, char *hr, int len)
 	result = scsi_execute_req(sdev, read_buffer, DMA_FROM_DEVICE, buff,
 				  len_buff, &sshdrr, 30 * HZ, 3, NULL);
 	if (result) {
-		pr_err("ufs: hr read buffer error 0x%x\n", result);
-		pr_err("sense hr read key:0x%x; asc:0x%x; ascq:0x%x\n", (int)sshdr.sense_key, (int)sshdr.asc, (int)sshdr.ascq);
+		pr_err("ufs: hr read buffer error 0x%llx\n", result);
+		pr_err("sense hr read key:0x%llx; asc:0x%llx; ascq:0x%llx\n", (int)sshdr.sense_key, (int)sshdr.asc, (int)sshdr.ascq);
 		return -EIO;
 	}
 
@@ -869,7 +869,7 @@ static int scsi_ss_set_pwd(struct scsi_device *sdev)
 	result = scsi_exec_req(sdev, cmd, DMA_NONE, 0,
 				  0, NULL, 30 * HZ, 3, NULL);
 	if (result) {
-		pr_err("ufs: scsi_ss_set_pwd error 0x%x\n", result);
+		pr_err("ufs: scsi_ss_set_pwd error 0x%llx\n", result);
 	}
 	return result;
 }
@@ -898,7 +898,7 @@ static int scsi_ss_enter_vendor_mode(struct scsi_device *sdev)
 	result = scsi_exec_req(sdev, cmd, DMA_NONE, 0,
 				  0, NULL, 30 * HZ, 3, NULL);
 	if (result) {
-		pr_err("ufs: scsi_ss_enter_vendor_mode error 0x%x\n", result);
+		pr_err("ufs: scsi_ss_enter_vendor_mode error 0x%llx\n", result);
 	}
 	return result;
 }
@@ -914,7 +914,7 @@ static int scsi_ss_exit_vendor_mode(struct scsi_device *sdev)
 	result = scsi_exec_req(sdev, cmd, DMA_NONE, 0,
 				  0, NULL, 30 * HZ, 3, NULL);
 	if (result) {
-		pr_err("ufs: scsi_ss_enter_vendor_mode error 0x%x\n", result);
+		pr_err("ufs: scsi_ss_enter_vendor_mode error 0x%llx\n", result);
 	}
 	return result;
 }
@@ -940,7 +940,7 @@ static int scsi_ss_nandinfo(struct scsi_device *sdev, char *osv, int len)
 	result = scsi_exec_req(sdev, cmd, DMA_FROM_DEVICE, osv,
 				  len, NULL, 30 * HZ, 3, NULL);
 	if (result) {
-		pr_err("ufs: get osv result error 0x%x\n", result);
+		pr_err("ufs: get osv result error 0x%llx\n", result);
 		return -EIO;
 	}
 
@@ -957,12 +957,12 @@ static int scsi_ss_hr(struct scsi_device *sdev, char *osv, int len)
 
 		result = scsi_ss_set_pwd(sdev);
 		if (result) {
-			pr_err("ufs: set pwd fail 0x%x\n", result);
+			pr_err("ufs: set pwd fail 0x%llx\n", result);
 			goto out;
 		} else {
 			result = scsi_ss_enter_vendor_mode(sdev);
 			if (result) {
-				pr_err("ufs: enter vendor mode fail 0x%x\n", result);
+				pr_err("ufs: enter vendor mode fail 0x%llx\n", result);
 				goto out;
 			}
 		}
@@ -970,12 +970,12 @@ static int scsi_ss_hr(struct scsi_device *sdev, char *osv, int len)
 
 	result = scsi_ss_nandinfo(sdev, osv, len);
 	if (result) {
-		pr_err("ufs: ger hr fail fail 0x%x\n", result);
+		pr_err("ufs: ger hr fail fail 0x%llx\n", result);
 	}
 
 	result = scsi_ss_exit_vendor_mode(sdev);
 	if (result) {
-		pr_err("ufs: exit vendor mode fail 0x%x\n", result);
+		pr_err("ufs: exit vendor mode fail 0x%llx\n", result);
 	}
 
 out:
@@ -1254,36 +1254,26 @@ static ssize_t err_state_show(struct device *dev, struct device_attribute *attr,
 
 static DEVICE_ATTR_RO(err_state);
 
-static ssize_t err_reason_show(struct device *dev, struct device_attribute *attr, char *buf)
+static ssize_t err_reason_show(struct device *dev,
+                               struct device_attribute *attr,
+                               char *buf)
 {
-	int ret = 0;
-	//struct ufs_hba *hba = g_ufs_info->hba;
-	//struct ufs_mtk_host *host = NULL;
+        int ret = 0;
+        int i;
 
-	if (g_ufs_info) {
-		//host = ufshcd_get_variant(g_ufs_info->hba);
-		if (!g_ufs_info->hba) {
-			ret = snprintf(buf, PAGE_SIZE, "get hba struct fail\n");
-			return ret;
-		}
+        if (!g_ufs_info || !g_ufs_info->hba)
+                return snprintf(buf, PAGE_SIZE, "hba not ready\n");
 
-		ret = snprintf(buf, PAGE_SIZE, "%s%s%s%s%s%s%s%s%s%s",
-									g_ufs_info->hba->err_stats.err_reason,
-									g_ufs_info->hba->err_stats.err_reason+1,
-									g_ufs_info->hba->err_stats.err_reason+2,
-									g_ufs_info->hba->err_stats.err_reason+3,
-									g_ufs_info->hba->err_stats.err_reason+4,
-									g_ufs_info->hba->err_stats.err_reason+5,
-									g_ufs_info->hba->err_stats.err_reason+6,
-									g_ufs_info->hba->err_stats.err_reason+7,
-									g_ufs_info->hba->err_stats.err_reason+8,
-									g_ufs_info->hba->err_stats.err_reason+9);
-	}
-	return ret;
+        for (i = 0; i < 10; i++) {
+                ret += snprintf(buf + ret, PAGE_SIZE - ret,
+                                "%s",
+                                g_ufs_info->hba->err_stats.err_reason[i]);
+        }
+
+        return ret;
 }
 
 static DEVICE_ATTR_RO(err_reason);
-
 static struct attribute *ufshcd_sysfs[] = {
 	&dev_attr_dump_health_desc.attr,
 	&dev_attr_dump_string_desc_serial.attr,
