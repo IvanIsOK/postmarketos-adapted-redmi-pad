@@ -1,3 +1,15 @@
+#include "mtk-eint.h"
+struct mtk_eint_hw {
+
+	unsigned int port_mask;
+
+	unsigned int ports;
+
+	unsigned int ap_num;
+
+	unsigned int db_cnt;
+
+};
 /* SPDX-License-Identifier: GPL-2.0-only */
 /*
  * Copyright (c) 2014 MediaTek Inc.
@@ -12,6 +24,17 @@
 #include <linux/pinctrl/pinconf-generic.h>
 
 #include "mtk-eint.h"
+struct mtk_eint_hw {
+
+	unsigned int port_mask;
+
+	unsigned int ports;
+
+	unsigned int ap_num;
+
+	unsigned int db_cnt;
+
+};
 
 #define NO_EINT_SUPPORT    255
 #define MT_EDGE_SENSITIVE           0

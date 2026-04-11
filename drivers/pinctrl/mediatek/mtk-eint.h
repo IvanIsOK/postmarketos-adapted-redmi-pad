@@ -73,6 +73,9 @@ struct mtk_eint_xt {
 };
 
 struct mtk_eint {
+    void __iomem *base;
+    const struct mtk_eint_regs *regs;
+    const struct mtk_eint_hw *hw;
 	struct device *dev;
 	struct irq_domain *domain;
 	int irq;
