@@ -1,13 +1,3 @@
-#include "mtk-eint.h"
-struct mtk_eint_hw {
-
-	unsigned int port_mask;
-
-	unsigned int ports;
-
-	unsigned int ap_num;
-
-	unsigned int db_cnt;
 
 };
 /* SPDX-License-Identifier: GPL-2.0-only */
