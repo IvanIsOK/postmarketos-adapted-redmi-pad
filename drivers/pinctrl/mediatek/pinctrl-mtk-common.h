@@ -24,31 +24,6 @@ struct mtk_eint_hw {
 #include <linux/pinctrl/pinconf-generic.h>
 
 #include "mtk-eint.h"
-struct mtk_eint_hw {
-
-	unsigned int port_mask;
-
-	unsigned int ports;
-
-	unsigned int ap_num;
-
-	unsigned int db_cnt;
-
-};
-
-#define NO_EINT_SUPPORT    255
-#define MT_EDGE_SENSITIVE           0
-#define MT_LEVEL_SENSITIVE          1
-#define EINT_DBNC_SET_DBNC_BITS     4
-#define EINT_DBNC_RST_BIT           (0x1 << 1)
-#define EINT_DBNC_SET_EN            (0x1 << 0)
-
-#define MTK_PINCTRL_NOT_SUPPORT	(0xffff)
-
-struct mtk_desc_function {
-	const char *name;
-	unsigned char muxval;
-};
 
 struct mtk_desc_eint {
 	unsigned char eintmux;
