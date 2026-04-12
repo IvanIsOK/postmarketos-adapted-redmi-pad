@@ -130,7 +130,9 @@ static inline int mtk_eint_find_irq(struct mtk_eint *eint, unsigned long eint_n)
 	return -EOPNOTSUPP;
 }
 
-static inline int dump_eint_pin_status(unsigned int eint_num)
+static inline int dump_eint_pin_status(unsigned int eint_num,
+                                        char *buf,
+                                        unsigned int buf_size)
 {
     return -EOPNOTSUPP;
 }

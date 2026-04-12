@@ -1,5 +1,3 @@
-
-};
 /* SPDX-License-Identifier: GPL-2.0-only */
 /*
  * Copyright (c) 2014 MediaTek Inc.
@@ -8,12 +6,19 @@
 
 #ifndef __PINCTRL_MTK_COMMON_H
 #define __PINCTRL_MTK_COMMON_H
+#define MTK_PINCTRL_NOT_SUPPORT 0xffffffff
+#define NO_EINT_SUPPORT 0xffffffff
 
 #include <linux/pinctrl/pinctrl.h>
 #include <linux/regmap.h>
 #include <linux/pinctrl/pinconf-generic.h>
 
 #include "mtk-eint.h"
+
+struct mtk_desc_function {
+	const char *name;
+	unsigned char muxval;
+};
 
 struct mtk_desc_eint {
 	unsigned char eintmux;
