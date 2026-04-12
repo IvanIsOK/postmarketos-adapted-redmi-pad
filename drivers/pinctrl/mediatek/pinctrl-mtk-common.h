@@ -9,11 +9,10 @@
 #define MTK_PINCTRL_NOT_SUPPORT 0xffffffff
 #define NO_EINT_SUPPORT 0xffffffff
 
+#include "mtk-eint.h"
 #include <linux/pinctrl/pinctrl.h>
 #include <linux/regmap.h>
 #include <linux/pinctrl/pinconf-generic.h>
-
-#include "mtk-eint.h"
 
 struct mtk_desc_function {
 	const char *name;
@@ -245,7 +244,7 @@ struct mtk_pinctrl_devdata {
 	unsigned char  port_shf;
 	unsigned char  port_mask;
 	unsigned char  port_align;
-	struct mtk_eint_hw eint_hw;
+	const struct mtk_eint_hw *eint_hw;
 	struct mtk_eint_regs *eint_regs;
 };
 
